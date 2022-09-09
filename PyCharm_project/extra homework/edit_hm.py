@@ -43,7 +43,8 @@ def top_3_letter(file):  # Вывести на экран Топ 3 букв дл
     top_1 = sort_dictionary[-1]
     top_2 = sort_dictionary[-2]
     top_3 = sort_dictionary[-3]
-    return f'{top_1.upper()} - количество: {my_dictionary.get(top_1)} \n' \
+    return f'Топ 3 букв: \n' \
+           f'{top_1.upper()} - количество: {my_dictionary.get(top_1)} \n' \
            f'{top_2.upper()} - количество: {my_dictionary.get(top_2)} \n' \
            f'{top_3.upper()} - количество: {my_dictionary.get(top_3)}'
 
