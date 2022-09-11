@@ -71,10 +71,10 @@ class Counter:
         elif len_9 > len_8 and len_9 > len_8:
             return f'В файле <File 9> больше всего уникальных букв <{len_9}>'
 
-    @staticmethod
-    def Sum_all_digit():  # 6. Вывести на экран сумму чисел из всех трех файлов
-        result = count_7.count_sum_digit + count_8.count_sum_digit + count_9.count_sum_digit
-
+    def Sum_all_digit(*args):  # 6. Вывести на экран сумму чисел из всех трех файлов
+        result = 0
+        for i in args:
+            result += i
         return result
 
     @staticmethod
@@ -110,5 +110,6 @@ print(f"Среднее арифметическое = {count_9.average_digit()}"
 print(count_9.top_3_letter())
 print()
 print(Counter.unique_letters())
-print(f'Сумма всех чисел = {Counter.Sum_all_digit()}')
+print(f'Сумма всех чисел = '
+      f'{Counter.Sum_all_digit(count_7.count_sum_digit, count_8.count_sum_digit, count_9.count_sum_digit)}')
 print(Counter.punctuation())
