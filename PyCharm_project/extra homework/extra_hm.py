@@ -19,8 +19,6 @@ class Counter:
         self.count_sum_digit = 0
         self.my_dictionary = {}
         self.symbol_list = []
-        self.punctuation_list = []
-        self.other_symbol_list = []
 
     def my_counter(self):  # 2. Вывести на экран сколько букв, цифр и спецсимволов в каждом из файлов
         for i in self.file:
@@ -35,11 +33,6 @@ class Counter:
             else:
                 self.count_symbol += 1
                 self.symbol_list.append(i)
-        for i in self.symbol_list:
-            if i in {'!', '-', '(', ')', ',', '.', ':', ';', '?'}:
-                self.punctuation_list.append(i)
-            else:
-                self.other_symbol_list.append(i)
 
         return f'LETTERs = {self.count_letter}, DIGITs = {self.count_digit}, SYMBOLs = {self.count_symbol}'
 
@@ -71,18 +64,25 @@ class Counter:
         elif len_9 > len_8 and len_9 > len_8:
             return f'В файле <File 9> больше всего уникальных букв <{len_9}>'
 
-    def Sum_all_digit(*args):  # 6. Вывести на экран сумму чисел из всех трех файлов
+    def sum_all_digit(*args):  # 6. Вывести на экран сумму чисел из всех трех файлов
         result = 0
         for i in args:
             result += i
-            
+
         return result
 
-    @staticmethod
-    def punctuation():  # 7. Вывести на экран сколько во всех файлах среди спецсимволов знаков препинания
-        result_punc = len(count_7.punctuation_list) + len(count_8.punctuation_list) + len(count_9.punctuation_list)
-        result_other_symbol = len(count_7.other_symbol_list) + len(count_8.other_symbol_list) + len(
-            count_9.other_symbol_list)
+    def punctuation(*args):  # 7. Вывести на экран сколько во всех файлах среди спецсимволов знаков препинания,
+        # (!-(),.:;?), а сколько прочих символов
+        punctuation_list = []
+        other_symbol_list = []
+        for i in args:
+            for j in i:
+                if j in ['!', '-', '(', ')', ',', '.', ':', ';', '?']:
+                    punctuation_list.append(j)
+                else:
+                    other_symbol_list.append(j)
+        result_punc = len(punctuation_list)
+        result_other_symbol = len(other_symbol_list)
 
         return f'Всего в файлах <{result_punc}> знаков препинания и <{result_other_symbol}> прочих спецсимволов'
 
@@ -112,5 +112,5 @@ print(count_9.top_3_letter())
 print()
 print(Counter.unique_letters())
 print(f'Сумма всех чисел = '
-      f'{Counter.Sum_all_digit(count_7.count_sum_digit, count_8.count_sum_digit, count_9.count_sum_digit)}')
-print(Counter.punctuation())
+      f'{Counter.sum_all_digit(count_7.count_sum_digit, count_8.count_sum_digit, count_9.count_sum_digit)}')
+print(Counter.punctuation(count_7.symbol_list, count_8.symbol_list, count_9.symbol_list))
