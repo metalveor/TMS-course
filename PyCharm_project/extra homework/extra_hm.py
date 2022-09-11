@@ -75,7 +75,6 @@ class Counter:
         result = 0
         for i in args:
             result += i
-           
         return result
 
     @staticmethod
